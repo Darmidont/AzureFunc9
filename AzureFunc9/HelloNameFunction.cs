@@ -17,7 +17,9 @@ public class HelloNameFunction
     [Function("HelloNameFunction")]
     public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
     {
-        _logger.LogInformation("C# HTTP trigger function processed a request.");
-        return new OkObjectResult("Welcome to Azure Functions!!!");
+        string name = req.Query["name"];
+        return name != null
+            ? new OkObjectResult($"Hello, {name}!")
+            : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
     }
 }

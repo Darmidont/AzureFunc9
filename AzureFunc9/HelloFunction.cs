@@ -5,16 +5,16 @@ using Microsoft.Extensions.Logging;
 
 namespace AzureFunc9;
 
-public class HelloNameFunction
+public class HelloFunction
 {
-    private readonly ILogger<HelloNameFunction> _logger;
+    private readonly ILogger<HelloFunction> _logger;
 
-    public HelloNameFunction(ILogger<HelloNameFunction> logger)
+    public HelloFunction(ILogger<HelloFunction> logger)
     {
         _logger = logger;
     }
 
-    [Function("HelloNameFunction")]
+    [Function("HelloFunction")]
     public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
     {
         string name = req.Query["name"];
